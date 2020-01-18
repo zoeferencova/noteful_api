@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const xss = require('xss');
-const FoldersService = require('./notes-service');
+const FoldersService = require('./folders-service');
 
 const foldersRouter = express.Router();
 const jsonParser = express.json();
