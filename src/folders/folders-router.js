@@ -64,7 +64,14 @@ foldersRouter
             .catch(next)
     })
     .get((req, res, next) => {
-        res.json(sanitizeResponse(res.folder))
+        FoldersService.getNoteForFolder(
+            req.app.get('db'),
+            req.params.folder_id
+        )
+            .then(folders => {
+                res.json(folders.map(sanitizeResponse))
+            })
+            .catch(next)
     })
     .delete((req, res, next) => {
         res.status(204).end()

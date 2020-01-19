@@ -26,8 +26,8 @@ notesRouter
             .catch(next)
     })
     .post(jsonParser, (req, res, next) => {
-        const { name, modified, folder_id } = req.body;
-        const newNote = { name, modified, folder_id };
+        const { name, modified, folder_id, content } = req.body;
+        const newNote = { name, folder_id };
 
         for (const [key, value] of Object.entries(newNote)) {
             if (value == null) {
@@ -38,6 +38,7 @@ notesRouter
         }
 
         newNote.content = content;
+        newNote.modified = modified;
 
         NotesService.insertNote(
             req.app.get('db'),
